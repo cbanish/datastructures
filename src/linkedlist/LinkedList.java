@@ -12,6 +12,7 @@ public class LinkedList {
 
     private Node first;
     private Node last;
+    private int size;
 
     public void addLast(int item) {
         var node = new Node(item);
@@ -22,6 +23,7 @@ public class LinkedList {
             last.next = node;
             last = node;
         }
+        size++;
     }
 
     public void addFirst(int item){
@@ -32,12 +34,14 @@ public class LinkedList {
             node.next =first;
             first = node;
         }
+        size++;
     }
 
     public void removeFirst(){
         var second =first.next;
         first.next =null;
         first =second;
+        size--;
     }
 
     public int indexOf(int item){
@@ -60,6 +64,29 @@ public class LinkedList {
         return first==null;
     }
 
+    public int size(){
+        return size;
+    }
+
+    public int[] toArray(){
+        int[] array = new int[size];
+        var current =first;
+        int index=0;
+        while(current !=null){
+            array[index]=current.value;
+            index++;
+            current =current.next;
+        }
+        return array;
+    }
+
+    public void reverse(int[] array){
+        for (int i= size-1; i>=0;i--){
+            first.value = array[i];
+            
+        }
+    }
+
     public static void main(String a[]) {
         LinkedList linkedList = new LinkedList();
         linkedList.addLast(10);
@@ -68,7 +95,10 @@ public class LinkedList {
         linkedList.addLast(40);
         System.out.println(linkedList.indexOf(30));
         System.out.println(linkedList.contains(40));
-        linkedList.removeFirst();
+       // linkedList.removeFirst();
+        int[] listArray =linkedList.toArray();
+
+
     }
 
 }
